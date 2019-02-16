@@ -494,10 +494,10 @@
 
         updateSettings()
 
-        // loopThrough(120)
+        // loopThrough(500, 10)
 
-        function loopThrough(upper) {
-            for (let i = 1; i < upper; i++) {
+        function loopThrough(upper, step) {
+            for (let i = 1; i < upper; i += step) {
                 setTimeout(function() {
                     form.n.value = i
                     updateSettings()
