@@ -1,71 +1,73 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: arial;
 }
 
 body {
-    background: #888888
+    background: #999999
 }
 
-h1 {
-    font-size: 30px;
-    font-family: arial;
-    margin: 10px;
-}
 
 aside {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    /* top: 10px;
+    left: 10px;
+    right: 10px; */
 
     height: 110px;
     padding: 5px;
 
     background-color: #FF4136;
-    border-bottom: 2px solid #222222;
+    border-bottom: 2px solid black;
 
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: stretch;
+    justify-content: flex-start;
 }
 
-.cell {
+#selection-form {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+}
+
+.selection {
+    border: solid rgb(255, 161, 157) 2px;
+    background: rgb(255, 106, 98);
+    margin: 2px;
+    width: 200px;
+    font-weight: 700;
     text-align: center;
-    display: inline-block;
-    overflow: hidden;
-    color: #222222;
-    user-select: none;
+    cursor: pointer;
 }
 
-.border {
-    background-color: #222222;
-    color: #CCCCCC;
-}
-
-.odd            { background-color: #BBBBBB }
-.even           { background-color: #CCCCCC }
-.n              { background-color: #0074D9 }
-.under-lattice  { background-color: #7FDBFF }
-.first-free     { background-color: #7FDB99 }
-.second-free    { background-color: #aaee55 }
-.third-free     { background-color: #e5ff00 }
-.fourth-free    { background-color: #ffd900 }
-.fifth-free     { background-color: #ffa600 }
-
-form {
-    height: 100%;
+#settings-form {
     display: flex;
+    flex-flow: column wrap;
     justify-content: space-evenly;
     align-content: flex-start;
     align-items: flex-end;
-    flex-flow: column wrap;
 }
+
+.setting {
+    padding: 1px;
+}
+
 .alg {
-    width: 80px;
-    height: 35px;
-    margin-right: -5px;
+    width: 70px;
+}
+
+.alg label {
+    display: inline-block;
+    width: 100%;
+}
+
+.alg input {
+    display: inline-block;
 }
 
 label {
@@ -79,19 +81,7 @@ label {
 }
 
 .count {
-    width: 60px;
     display: inline-block;
-}
-
-.template {
-    display: none;
-}
-
-#table {
-    position: absolute;
-    bottom: 0;
-    top: 120px;
-    white-space: nowrap;
 }
 
 input[type=number] {

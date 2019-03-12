@@ -46,12 +46,12 @@ function updateSettings() {
     settings.pairs = getFactorPairs()
     settings.showNumbers = form.showNumbers.checked
     settings.showTable = form.showTable.checked
-    settings.underLattice = form.underLattice.checked
-    settings.firstFree = form.firstFree.checked
-    settings.secondFree = form.secondFree.checked
-    settings.thirdFree = form.thirdFree.checked
-    settings.fourthFree = form.fourthFree.checked
-    settings.fifthFree = form.fifthFree.checked
+    settings.underLattice = form.mod0.checked
+    settings.firstFree = form.mod1.checked
+    settings.secondFree = form.mod2.checked
+    settings.thirdFree = form.mod6.checked
+    settings.fourthFree = form.mod12.checked
+    settings.fifthFree = form.mod60.checked
 
     // If crop lattice and its not a prime number, that is no lattice
     if (form.cropLattice.checked && settings.pairs.length > 0) {

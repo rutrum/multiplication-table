@@ -7,70 +7,87 @@
 </head>
 
 <body>
-    <aside>
-        <h1 style="order:10">
-            Multiplication Table
-        </h1>
-        <form id="settings-selection" style="justify-content: center">
-            <label class="selection selected" id="setsel-gen">General Settings</label>
-            <label class="selection" id="setsel-mod">Modulus Selection</label>
-            <label class="selection" id="setsel-ani">Animation Settings</label>
-        </form>
-        <form id="settings-form" style="flex-grow:3" method="GET">
-            <label class="general">Width
-                <input type="number" name="width" value="30">
-            </label>
-            <label class="general">Height
-                <input type="number" name="height" value="10">
-            </label>
-            <label class="general">Size
-                <input type="number" name="size" value="25">
-            </label>
-            <label class="general"><em>n</em> Value
-                <input type="number" name="n" value="377">
-            </label>
-            <label class="general">Show Numbers
-                <input type="checkbox" name="showNumbers" checked>
-            </label>
-            <label class="general">Show Table
-                <input type="checkbox" name="showTable" checked>
-            </label>
-            <label class="general">Crop Lattice
-                <input type="checkbox" name="cropLattice" checked>
-            </label>
-            <label><input type="submit"></label>
 
-            <label class="alg">Naive
-                <input type="checkbox" name="underLattice" checked>
-                <span class="count"></span>
-            </label>
-            <label class="alg">Mod 1
-                <input type="checkbox" name="firstFree" checked>
-                <span class="count"></span>
-            </label>
-            <label class="alg">Mod 2
-                <input type="checkbox" name="secondFree" checked>
-                <span class="count"></span>
-            </label>
-            <label class="alg">Mod 6
-                <input type="checkbox" name="thirdFree" checked>
-                <span class="count"></span>
-            </label>
-            <label class="alg">Mod 12
-                <input type="checkbox" name="fourthFree" checked>
-                <span class="count"></span>
-            </label>
-            <label class="alg">Mod 60
-                <input type="checkbox" name="fifthFree" checked>
-                <span class="count"></span>
-            </label>
-        </form>
-    </aside>
-    <div id="table">
-        <div class="cell template">0</div>
-    </div>
-    
-    <script src="./master.js"></script>
+<aside>
+    <form id="selection-form">
+        <div class="selection">General</div>
+        <div class="selection">Algorithms</div>
+        <div class="selection">Animation</div>
+        <div class="selection">Submit</div>
+    </form>
+    <form id="settings-form">
+
+        <div class="setting general">
+            <label for="n">n</label>
+            <input name="n" type="number" value="377">
+        </div>
+        <div class="setting general">
+            <label for="height">Height</label>
+            <input name="height" type="number" value="10">
+        </div>
+        <div class="setting general">
+            <label for="width">Width</label>
+            <input name="width" type="number" value="12">
+        </div>
+        <div class="setting general">
+            <label for="size">Size</label>
+            <input name="size" type="number" value="25">
+        </div>
+
+        <div class="setting general">
+            <label for="showNumbers">Show Numbers</label>
+            <input name="showNumbers" type="checkbox" checked>
+        </div>
+        <div class="setting general">
+            <label for="showTable">Show Table</label>
+            <input name="showTable" type="checkbox" checked>
+        </div>
+        <div class="setting general">
+            <label for="cropLattice">Crop Lattice</label>
+            <input name="cropLattice" type="checkbox" checked>
+        </div>
+
+        <div class="setting alg">
+            <label for="mod0">Naive</label>
+            <input type="checkbox" name="mod0" checked>
+            <div class="count"></div>
+        </div>
+        <div class="setting alg">
+            <label for="mod1">Mod 1</label>
+            <input type="checkbox" name="mod1" checked>
+            <div class="count"></div>
+        </div>
+        <div class="setting alg">
+            <label for="mod2">Mod 2</label>
+            <input type="checkbox" name="mod2" checked>
+            <div class="count"></div>
+        </div>
+        <div class="setting alg">
+            <label for="mod6">Mod 6</label>
+            <input type="checkbox" name="mod6" checked>
+            <div class="count"></div>
+        </div>
+        <div class="setting alg">
+            <label for="mod12">Mod 12</label>
+            <input type="checkbox" name="mod12" checked>
+            <div class="count"></div>
+        </div>
+        <div class="setting alg">
+            <label for="mod60">Mod 60</label>
+            <input type="checkbox" name="mod60" checked>
+            <div class="count"></div>
+        </div>
+        <div class="setting alg">
+            <input type="submit" name="mod60" checked>
+        </div>
+    </form>
+</aside>
+
+<div id="table">
+    <div class="cell template">0</div>
+</div>
+
+<script src="./master.js"></script>
 
 </body>
 

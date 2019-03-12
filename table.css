@@ -1,0 +1,34 @@
+#table {
+    position: absolute;
+    bottom: 0;
+    top: 122px;
+    white-space: nowrap;
+}
+
+.template {
+    display: none;
+}
+
+.cell {
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    color: #222222;
+    user-select: none;
+}
+
+.border {
+    background-color: #222222;
+    color: #CCCCCC;
+}
+
+.odd            { background-color: #BBBBBB }
+.even           { background-color: #CCCCCC }
+
+.n              { background-color: #0074D9 }
+.under-lattice  { background-color: #7FDBFF }
+.first-free     { background-color: #7FDB99 }
+.second-free    { background-color: #aaee55 }
+.third-free     { background-color: #e5ff00 }
+.fourth-free    { background-color: #ffd900 }
+.fifth-free     { background-color: #ffa600 }
