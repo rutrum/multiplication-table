@@ -1,0 +1,123 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #888888
+}
+
+h1 {
+    font-size: 30px;
+    font-family: arial;
+    margin: 10px;
+}
+
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    height: 110px;
+    padding: 5px;
+
+    background-color: #FF4136;
+    border-bottom: 2px solid #222222;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cell {
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    color: #222222;
+    user-select: none;
+}
+
+.border {
+    background-color: #222222;
+    color: #CCCCCC;
+}
+
+.odd            { background-color: #BBBBBB }
+.even           { background-color: #CCCCCC }
+.n              { background-color: #0074D9 }
+.under-lattice  { background-color: #7FDBFF }
+.first-free     { background-color: #7FDB99 }
+.second-free    { background-color: #aaee55 }
+.third-free     { background-color: #e5ff00 }
+.fourth-free    { background-color: #ffd900 }
+.fifth-free     { background-color: #ffa600 }
+
+form {
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: flex-start;
+    align-items: flex-end;
+    flex-flow: column wrap;
+}
+.alg {
+    width: 80px;
+    height: 35px;
+    margin-right: -5px;
+}
+
+label {
+    text-align: initial;
+    font-family: arial;
+    font-weight: 700;
+    padding: 3px;
+    margin-right: 15px;
+    font-size: 16px;
+    height: 20px;
+}
+
+.count {
+    width: 60px;
+    display: inline-block;
+}
+
+.template {
+    display: none;
+}
+
+#table {
+    position: absolute;
+    bottom: 0;
+    top: 120px;
+    white-space: nowrap;
+}
+
+input[type=number] {
+    padding: 2px;
+    width: 70px;
+    font-size: 15px;
+    border: 0;
+}
+input[type=checkbox] {
+    padding: 0px;
+    transform: scale(1.3);
+    appearance: none;
+}
+input[type=submit] {
+    padding: 3px;
+    margin: -3px 0px;
+    height: 25px;
+    width: 70px;
+}
+.selection {
+    border: solid rgb(255, 161, 157) 2px;
+    background: rgb(255, 106, 98);
+    margin: 2px;
+    width: 200px;
+    text-align: center;
+}
+.selected {
+    background: rgb(255, 161, 157);
+}
