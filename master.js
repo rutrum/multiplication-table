@@ -8,7 +8,27 @@ settings = {
 
 // Add event listeners
 var form = document.querySelector("#settings-form")
-form.addEventListener('submit', onFormSubmit)
+var submit = document.querySelector('#submit')
+submit.addEventListener('click', onFormSubmit);
+var general = document.querySelector('#filter-general')
+general.addEventListener('click', showSettings.bind(event, "general"))
+var algorithms = document.querySelector('#filter-algorithms')
+algorithms.addEventListener('click', showSettings.bind(event, "alg"))
+
+function showSettings(filter) {
+    hideAllSettings();
+    var generalSettings = document.querySelectorAll('.' + filter)
+    for (let setting of generalSettings) {
+        setting.style.display = "initial"
+    }
+}
+
+function hideAllSettings() {
+    var settings = document.querySelectorAll('.setting')
+    for (let setting of settings) {
+        setting.style.display = "none";
+    }
+}
 
 // Create useful DOM variables
 var table = document.querySelector("#table")

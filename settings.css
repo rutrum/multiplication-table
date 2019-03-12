@@ -17,6 +17,7 @@ aside {
     /* top: 10px;
     left: 10px;
     right: 10px; */
+    z-index: 1;
 
     height: 110px;
     padding: 5px;
@@ -55,6 +56,11 @@ aside {
 
 .setting {
     padding: 1px;
+    display: none;
+}
+
+.general {
+    display: initial;
 }
 
 .alg {
