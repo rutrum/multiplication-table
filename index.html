@@ -63,6 +63,7 @@
             height: 100%;
             display: flex;
             justify-content: space-evenly;
+            align-content: flex-start;
             align-items: flex-end;
             flex-flow: column wrap;
         }
@@ -123,32 +124,35 @@
         <h1 style="order:10">
             Multiplication Table
         </h1>
-        <form id="settings-form">
-            <label>Width
+        <form id="settings-selection">
+            <label id="setsel-gen">General Settings</label>
+            <label id="setsel-mod">Modulus Selection</label>
+            <label id="setsel-ani">Animation Settings</label>
+        </form>
+        <form id="settings-form" style="flex-grow:3" method="GET">
+            <label class="general">Width
                 <input type="number" name="width" value="30">
             </label>
-            <label>Height
+            <label class="general">Height
                 <input type="number" name="height" value="10">
             </label>
-            <label>Size
+            <label class="general">Size
                 <input type="number" name="size" value="25">
             </label>
-            <!-- <label>Font
-                <input type="number" name="font" value="12">
-            </label> -->
-            <label><em>n</em> Value
+            <label class="general"><em>n</em> Value
                 <input type="number" name="n" value="377">
             </label>
-            <label>Show Numbers
+            <label class="general">Show Numbers
                 <input type="checkbox" name="showNumbers" checked>
             </label>
-            <label>Show Table
+            <label class="general">Show Table
                 <input type="checkbox" name="showTable" checked>
             </label>
-            <label>Crop Lattice
+            <label class="general">Crop Lattice
                 <input type="checkbox" name="cropLattice" checked>
             </label>
             <label><input type="submit"></label>
+
             <label class="alg">Naive
                 <input type="checkbox" name="underLattice" checked>
                 <span class="count"></span>
@@ -202,6 +206,11 @@
         function onFormSubmit(event) {
             event.preventDefault()
             updateSettings()
+        }
+
+        function onSettingsSelection(event) {
+            event.preventDefault()
+            console.log(event.target.value)
         }
 
         // Function for settings-form submission
