@@ -45,6 +45,10 @@ aside {
     cursor: pointer;
 }
 
+.selected {
+    background: rgb(255, 161, 157);
+}
+
 #settings-form {
     display: flex;
     flex-flow: column wrap;
@@ -62,16 +66,16 @@ aside {
     display: initial;
 }
 
-.alg {
+.algorithm {
     width: 90px;
     margin-left: 10px;
 }
 
-.alg label {
+.algorithm label {
     display: inline-block;
 }
 
-.alg input {
+.algorithm input {
     display: inline-block;
 }
 
@@ -101,14 +105,4 @@ button {
     padding: 3px;
     height: 50px;
     width: 140px;
-}
-.selection {
-    border: solid rgb(255, 161, 157) 2px;
-    background: rgb(255, 106, 98);
-    margin: 2px;
-    width: 200px;
-    text-align: center;
-}
-.selected {
-    background: rgb(255, 161, 157);
 }

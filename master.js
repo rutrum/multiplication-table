@@ -12,23 +12,28 @@ var submit = document.querySelector('#submit')
 submit.addEventListener('click', onFormSubmit);
 var general = document.querySelector('#filter-general')
 general.addEventListener('click', showSettings.bind(event, "general"))
-var algorithms = document.querySelector('#filter-algorithms')
-algorithms.addEventListener('click', showSettings.bind(event, "alg"))
+var algorithms = document.querySelector('#filter-algorithm')
+algorithms.addEventListener('click', showSettings.bind(event, "algorithm"))
 var animation = document.querySelector('#filter-animation')
 animation.addEventListener('click', showSettings.bind(event, "animation"))
 
 function showSettings(filter) {
     hideAllSettings();
-    var generalSettings = document.querySelectorAll('.' + filter)
-    for (let setting of generalSettings) {
+    var theseSettings = document.querySelectorAll('.' + filter)
+    for (let setting of theseSettings) {
         setting.style.display = "initial"
     }
+    document.querySelector('#filter-' + filter).classList.add('selected')
 }
 
 function hideAllSettings() {
     var settings = document.querySelectorAll('.setting')
     for (let setting of settings) {
         setting.style.display = "none";
+    }
+    var filters = document.querySelectorAll('.selection')
+    for (let filter of filters) {
+        filter.classList.remove('selected')
     }
 }
 
