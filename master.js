@@ -14,6 +14,8 @@ var general = document.querySelector('#filter-general')
 general.addEventListener('click', showSettings.bind(event, "general"))
 var algorithms = document.querySelector('#filter-algorithms')
 algorithms.addEventListener('click', showSettings.bind(event, "alg"))
+var animation = document.querySelector('#filter-animation')
+animation.addEventListener('click', showSettings.bind(event, "animation"))
 
 function showSettings(filter) {
     hideAllSettings();
@@ -36,9 +38,22 @@ var br = document.createElement("br")
 var template = document.querySelector(".template")
 template.classList.remove("template")
 
+let loop;
+
 function onFormSubmit(event) {
     event.preventDefault()
-    updateSettings()
+    window.clearInterval(loop)
+
+    if (form.animate.checked) {
+        let lower = parseInt(form.startn.value)
+        let upper = parseInt(form.endn.value)
+        let step = parseInt(form.step.value)
+        let period = parseInt(form.period.value)
+        form.cropLattice.checked = false;
+        loopThrough(lower, upper, step, period)
+    } else {
+        updateSettings()
+    }
 }
 
 function onSettingsSelection(event) {
@@ -312,12 +327,6 @@ function greatestIntegersInRow(numRows) {
             i--;
         }
     }
-    // for (let i = 0; i < pairs.length && list.length < numRows; i++) {
-    //     if (pairs[i][1] > list.length + 1) {
-    //         list.push((pairs[i][0] - 1) * (list.length + 1))
-    //         i--;
-    //     }
-    // }
     while (list.length < numRows) {
         list.push(0)
     }
@@ -334,15 +343,27 @@ function getFactorPairs() {
     return pairs
 }
 
+function isPrime(n) {
+    for (let i = 2; i * i < n; i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 updateSettings()
 
-// loopThrough(500, 10)
-
-function loopThrough(upper, step) {
-    for (let i = 1; i < upper; i += step) {
-        setTimeout(function() {
+function loopThrough(lower, upper, step, period) {
+    let i = lower
+    let noPrimes = form.skipPrimes.checked 
+    loop = window.setInterval(() => {
+        if (i < upper) {
             form.n.value = i
             updateSettings()
-        }, 300 * (i - 1))
-    }
+            do {
+                i += step
+            } while (isPrime(i))
+        }
+    }, period)
 }
