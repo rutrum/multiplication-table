@@ -34,12 +34,12 @@ aside {
     display: flex;
     flex-flow: column wrap;
     justify-content: space-evenly;
+    margin-right: 20px;
 }
 
 .selection {
     border: solid rgb(255, 161, 157) 2px;
     background: rgb(255, 106, 98);
-    margin: 2px;
     width: 200px;
     font-weight: 700;
     text-align: center;
@@ -55,7 +55,7 @@ aside {
 }
 
 .setting {
-    padding: 1px;
+    padding: 2px 5px;
     display: none;
 }
 
@@ -64,12 +64,12 @@ aside {
 }
 
 .alg {
-    width: 70px;
+    width: 90px;
+    margin-left: 10px;
 }
 
 .alg label {
     display: inline-block;
-    width: 100%;
 }
 
 .alg input {
@@ -78,16 +78,13 @@ aside {
 
 label {
     text-align: initial;
-    font-family: arial;
     font-weight: 700;
     padding: 3px;
-    margin-right: 15px;
-    font-size: 16px;
-    height: 20px;
+    margin-right: 2px;
 }
 
 .count {
-    display: inline-block;
+    margin-left: 3px;
 }
 
 input[type=number] {
