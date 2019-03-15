@@ -46,7 +46,7 @@ template.classList.remove("template")
 let loop;
 
 function onFormSubmit(event) {
-    event.preventDefault()
+    // event.preventDefault()
     window.clearInterval(loop)
 
     if (form.animate.checked) {
@@ -59,11 +59,6 @@ function onFormSubmit(event) {
     } else {
         updateSettings()
     }
-}
-
-function onSettingsSelection(event) {
-    event.preventDefault()
-    console.log(event.target.value)
 }
 
 // Function for settings-form submission
@@ -117,10 +112,10 @@ function updateSettings() {
     let algs = document.querySelectorAll(".count")
     let i = 0;
     for (let i = 0; i < 6; i++) {
-        if (algs[i].previousElementSibling.checked) {
+        if (algs[i].nextElementSibling.checked) {
             algs[i].textContent = settings.colored[i]
         } else {
-            algs[i].textContent = " "
+            algs[i].textContent = "_"
         }
     }
     console.log(algs)
