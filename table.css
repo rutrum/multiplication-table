@@ -26,9 +26,9 @@
 .even           { background-color: #CCCCCC }
 
 .n              { background-color: #0074D9 }
-.under-lattice  { background-color: #7FDBFF }
-.first-free     { background-color: #7FDB99 }
-.second-free    { background-color: #aaee55 }
-.third-free     { background-color: #e5ff00 }
-.fourth-free    { background-color: #ffd900 }
-.fifth-free     { background-color: #ffa600 }
+.mod0           { background-color: #7FDBFF }
+.mod1           { background-color: #7FDB99 }
+.mod2           { background-color: #aaee55 }
+.mod6           { background-color: #e5ff00 }
+.mod12          { background-color: #ffd900 }
+.mod60          { background-color: #ffa600 }

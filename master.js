@@ -239,13 +239,13 @@ function getColorClass(row, col) {
 
                     if (p % 60 == 0 && p > settings.Li5[59]) {
                         settings.colored[5]++
-                        return "fifth-free"
+                        return "mod60"
                     }
 
                     for (let i = 1; i < 60; i++) {
                         if (p % 60 == i && p > settings.Li5[i-1]) {
                             settings.colored[5]++
-                            return "fifth-free"
+                            return "mod60"
                         }
                     }
                 }
@@ -254,13 +254,13 @@ function getColorClass(row, col) {
                     
                     if (p % 12 == 0 && p > settings.Li4[11]) {
                         settings.colored[4]++
-                        return "fourth-free"
+                        return "mod12"
                     }
 
                     for (let i = 1; i < 12; i++) {
                         if (p % 12 == i && p > settings.Li4[i-1]) {
                             settings.colored[4]++
-                            return "fourth-free"
+                            return "mod12"
                         }
                     }
                 }
@@ -269,13 +269,13 @@ function getColorClass(row, col) {
 
                     if (p % 6 == 0 && p > settings.Li3[5]) {
                         settings.colored[3]++
-                        return "third-free"
+                        return "mod6"
                     }
 
                     for (let i = 1; i < 6; i++) {
                         if (p % 6 == i && p > settings.Li3[i-1]) {
                             settings.colored[3]++
-                            return "third-free"
+                            return "mod6"
                         }
                     }
                 }
@@ -285,11 +285,11 @@ function getColorClass(row, col) {
                     if (p % 2 == 0 && p > settings.Li2[1]) {
                         // Even row
                         settings.colored[2]++
-                        return "second-free"
+                        return "mod2"
                     } else if (p % 2 == 1 && p > settings.Li2[0]) {
                         // Odd row
                         settings.colored[2]++
-                        return "second-free"
+                        return "mod2"
                     }
                 }
 
@@ -297,12 +297,12 @@ function getColorClass(row, col) {
                     // Does first row free see it?
                     if (pairs.length > 0 && p + 1 > pairs[0][1]) {
                         settings.colored[1]++
-                        return "first-free"
+                        return "mod1"
                     }
                 }
                 if (settings.underLattice) {
                     settings.colored[0]++
-                    return "under-lattice"
+                    return "mod0"
                 }
                 break;
             }
