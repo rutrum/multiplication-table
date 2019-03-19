@@ -390,7 +390,7 @@ function loopThrough(lower, upper, step, period) {
         if (i < upper) {
             form.n.value = i
             updateSettings()
-            if (!noPrimes) {
+            if (noPrimes) {
                 do {
                     i += step
                 } while (isPrime(i))
