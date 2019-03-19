@@ -107,7 +107,7 @@ function updateSettings() {
         justValues()
     }
 
-    for (let i = 6; i > 0; i--) {
+    for (let i = settings.colored.length - 1; i > 0; i--) {
         settings.colored[i - 1] += settings.colored[i]; 
     }
     let algs = document.querySelectorAll(".count")
@@ -119,8 +119,6 @@ function updateSettings() {
             algs[i].textContent = "_"
         }
     }
-    console.log(algs)
-    console.log(settings.colored)
 }
 
 function clearTable() {
@@ -128,25 +126,23 @@ function clearTable() {
 }
 
 function initLi() {
-    Gi = greatestIntegersInRow(60)
+    Gi = greatestIntegersInRow(120)
 
-    // settings.Li6 = []
-    // for (let i = 1; i <= 420; i++) {
-    //     settings.Li6.push(0);
-    //     for (let j = 1; j <= i; j++) {
-    //         if (i % j == 0) {
-    //             settings.Li6[i-1] = Math.max(settings.Li6[i-1], Gi[j - 1])
-    //         }
-    //     }
-    // }
-
-    console.log(settings.Li6)
+    settings.Li6 = []
+    for (let i = 1; i <= 120; i++) {
+        settings.Li6.push(0);
+        for (let j = 1; j <= i; j++) {
+            if (120 % j == 0 && i % j == 0) {
+                settings.Li6[i-1] = Math.max(settings.Li6[i-1], Gi[j - 1])
+            }
+        }
+    }
 
     settings.Li5 = []
     for (let i = 1; i <= 60; i++) {
         settings.Li5.push(0);
         for (let j = 1; j <= i; j++) {
-            if (i % j == 0) {
+            if (60 % j == 0 && i % j == 0) {
                 settings.Li5[i-1] = Math.max(settings.Li5[i-1], Gi[j - 1])
             }
         }
@@ -245,23 +241,28 @@ function getColorClass(row, col) {
         for (let i = 0; i < pairs.length; i++) {
             if ((row < pairs[i][0]) && (col < pairs[i][1])) {
 
-                Gi = greatestIntegersInRow(60)
+                // Gi = greatestIntegersInRow(120)
                 // console.log(Gi)
 
-                // if (settings.mod120) {
+                if (p == 225) {
+                    console.log("mod120 " + 224%120 + " " + settings.Li6[224 % 120])
+                    console.log("mod60 " + 224%60 + " " + settings.Li5[224 % 60])
+                }
 
-                //     if (p % 420 == 0 && p > settings.Li6[419]) {
-                //         settings.colored[6]++
-                //         return "mod120"
-                //     }
+                if (settings.mod120) {
 
-                //     for (let i = 1; i < 420; i++) {
-                //         if (p % 420 == i && p > settings.Li6[i-1]) {
-                //             settings.colored[6]++
-                //             return "mod120"
-                //         }
-                //     }
-                // }
+                    if (p % 120 == 0 && p > settings.Li6[119]) {
+                        settings.colored[6]++
+                        return "mod120"
+                    }
+
+                    for (let i = 1; i < 120; i++) {
+                        if (p % 120 == i && p > settings.Li6[i-1]) {
+                            settings.colored[6]++
+                            return "mod120"
+                        }
+                    }
+                }
 
                 if (settings.mod60) {
 
@@ -389,9 +390,13 @@ function loopThrough(lower, upper, step, period) {
         if (i < upper) {
             form.n.value = i
             updateSettings()
-            do {
+            if (!noPrimes) {
+                do {
+                    i += step
+                } while (isPrime(i))
+            } else {
                 i += step
-            } while (isPrime(i))
+            }
         }
     }, period)
 }
