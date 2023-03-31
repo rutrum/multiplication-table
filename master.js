@@ -78,7 +78,7 @@ function updateSettings() {
     // Update global settings
     settings.width = parseInt(form.width.value)
     settings.height = parseInt(form.height.value)
-    settings.n = parseInt(form.n.value)
+    settings.n = eval(form.n.value)
     settings.pairs = getFactorPairs()
     settings.showNumbers = form.showNumbers.checked
     settings.showTable = form.showTable.checked

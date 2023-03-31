@@ -29,9 +29,12 @@ aside {
     justify-content: flex-start;
 }
 
+input {
+    width: 100px;
+}
+
 input[type=number] {
     padding: 2px;
-    width: 70px;
     font-size: 15px;
     border: 0;
 }
