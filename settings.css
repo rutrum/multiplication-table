@@ -38,12 +38,21 @@ input[type=number] {
 input[type=checkbox] {
     padding: 0px;
     transform: scale(1.3);
-    appearance: none;
 }
 button {
     padding: 3px;
     height: 50px;
     width: 140px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 #selection-form {

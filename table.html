@@ -1,3 +1,276 @@
+<html>
+
+<head>
+    <title>Multiplication Table</title>
+    <style>
+* {
+    padding: 0;
+    margin: 0;
+    font-family: arial;
+}
+
+body {
+    background: #999999
+}
+
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* top: 10px;
+    left: 10px;
+    right: 10px; */
+    z-index: 1;
+
+    height: 110px;
+    padding: 5px;
+
+    background-color: #FF4136;
+    border-bottom: 2px solid black;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+input[type=number] {
+    padding: 2px;
+    width: 70px;
+    font-size: 15px;
+    border: 0;
+}
+input[type=checkbox] {
+    padding: 0px;
+    transform: scale(1.3);
+    appearance: none;
+}
+button {
+    padding: 3px;
+    height: 50px;
+    width: 140px;
+}
+
+#selection-form {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    margin-right: 20px;
+}
+
+.selection {
+    border: solid rgb(255, 161, 157) 2px;
+    background: rgb(255, 106, 98);
+    width: 200px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+}
+
+.selected {
+    background: rgb(255, 161, 157);
+}
+
+#settings-form {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-content: flex-start;
+    align-items: flex-end;
+}
+
+.setting {
+    padding: 2px 5px;
+    display: none;
+}
+
+.general {
+    display: initial;
+}
+
+.algorithm {
+    width: 70px;
+    margin-left: 0px;
+    padding: 2px;
+    height: 100%;
+    border: solid black 0px;
+    border-radius: 0px;
+}
+
+.algorithm label {
+    display: inline-block;
+    width: 100%;
+}
+
+.algorithm input {
+    display: block;
+    height: 50%;
+    margin: 0 auto;
+    transform: scale(1.5);
+    border: solid black 2px;
+}
+
+label {
+    text-align: initial;
+    font-weight: 700;
+    padding: 3px;
+    margin-right: 2px;
+}
+
+.count {
+    display: inline-block;
+    margin-left: 3px;
+}
+
+#table {
+    position: absolute;
+    bottom: 0;
+    top: 122px;
+    white-space: nowrap;
+}
+
+.template {
+    display: none;
+}
+
+.cell {
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    color: #222222;
+    user-select: none;
+}
+
+.border {
+    background-color: #222222;
+    color: #CCCCCC;
+}
+
+.odd            { background-color: #BBBBBB }
+.even           { background-color: #CCCCCC }
+
+.n              { background-color: #0074D9 }
+.mod0           { background-color: #7FDBFF }
+.mod1           { background-color: #7FDB99 }
+.mod2           { background-color: #aaee55 }
+.mod6           { background-color: #e5ff00 }
+.mod12          { background-color: #ffd900 }
+.mod60          { background-color: #ffa600 }
+.mod120         { background-color: #f06c00 }
+    </style>
+</head>
+
+<body>
+
+<aside>
+    <form id="selection-form">
+        <div id="filter-general" class="selection selected">General</div>
+        <div id="filter-algorithm" class="selection">Algorithms</div>
+        <div id="filter-animation" class="selection">Animation</div>
+        <div id="submit" class="selection">Submit</div>
+    </form>
+    <form id="settings-form" method="get" action=".">
+
+        <div class="setting general">
+            <label for="n">n</label>
+            <input name="n" type="number" value="377">
+        </div>
+        <div class="setting general">
+            <label for="height">Height</label>
+            <input name="height" type="number" value="10">
+        </div>
+        <div class="setting general">
+            <label for="width">Width</label>
+            <input name="width" type="number" value="32">
+        </div>
+        <div class="setting general">
+            <label for="size">Size</label>
+            <input name="size" type="number" value="25">
+        </div>
+
+        <div class="setting general">
+            <label for="showNumbers">Show Numbers</label>
+            <input name="showNumbers" type="checkbox" checked>
+        </div>
+        <div class="setting general">
+            <label for="showTable">Show Table</label>
+            <input name="showTable" type="checkbox" checked>
+        </div>
+        <div class="setting general">
+            <label for="cropLattice">Crop Lattice</label>
+            <input name="cropLattice" type="checkbox" checked>
+        </div>
+
+        <div class="setting algorithm mod0">
+            <label for="mod0">Naive</label>
+            <div class="count"></div>
+            <input type="checkbox" name="mod0" checked>
+        </div>
+        <div class="setting algorithm mod1">
+            <label for="mod1">Mod 1</label>
+            <div class="count"></div>
+            <input type="checkbox" name="mod1" checked>
+        </div>
+        <div class="setting algorithm mod2">
+            <label for="mod2">Mod 2</label>
+            <div class="count"></div>
+            <input type="checkbox" name="mod2" checked>
+        </div>
+        <div class="setting algorithm mod6">
+            <label for="mod6">Mod 6</label>
+            <div class="count"></div>
+            <input type="checkbox" name="mod6" checked>
+        </div>
+        <div class="setting algorithm mod12">
+            <label for="mod12">Mod 12</label>
+            <div class="count"></div>
+            <input type="checkbox" name="mod12" checked>
+        </div>
+        <div class="setting algorithm mod60">
+            <label for="mod60">Mod 60</label>
+            <div class="count"></div>
+            <input type="checkbox" name="mod60" checked>
+        </div>
+        <div class="setting algorithm mod120">
+            <label for="mod120">Mod 120</label>
+            <div class="count"></div>
+            <input type="checkbox" name="mod120" checked>
+        </div>
+
+        <div class="setting animation">
+            <label for="animate">Run Animation</label>
+            <input name="animate" type="checkbox">
+        </div>
+        <div class="setting animation">
+            <label for="startn">Start n</label>
+            <input name="startn" type="number" value="1">
+        </div>
+        <div class="setting animation">
+            <label for="endn">End n</label>
+            <input name="endn" type="number" value="120">
+        </div>
+        <div class="setting animation">
+            <label for="step">Step</label>
+            <input name="step" type="number" value="1">
+        </div>
+        <div class="setting animation">
+            <label for="period">Period (ms)</label>
+            <input name="period" type="number" value="200">
+        </div>
+        <div class="setting animation">
+            <label for="skipPrimes">Skip Primes</label>
+            <input name="skipPrimes" type="checkbox">
+        </div>
+        <!-- <div style="width: 200px; height: 100%; font-size: 20pt; padding-left: 20px; font-weight: 600;">Good luck with your talk Dr. Webster!</div> -->
+    </form>
+</aside>
+
+<div id="table">
+    <div class="cell template">0</div>
+</div>
+
+<script>
+
 settings = {
     width: 20,
     height: 10,
@@ -65,7 +338,6 @@ function onFormSubmit(event) {
 function updateSettings() {
 
     // Update template based on values
-    scale = parseFloat(form["font-scale"].value)
     size = parseInt(form.size.value)
     template.style.lineHeight = size + "px"
     template.style.width = size
@@ -73,7 +345,7 @@ function updateSettings() {
 
     // font = parseInt(form.font.value)
     // template.style.fontSize = font
-    template.style.fontSize = parseInt(size) / 2 * scale
+    template.style.fontSize = parseInt(size) / 2
 
     // Update global settings
     settings.width = parseInt(form.width.value)
@@ -401,3 +673,8 @@ function loopThrough(lower, upper, step, period) {
         }
     }, period)
 }
+</script>
+
+</body>
+
+</html>
