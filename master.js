@@ -120,6 +120,19 @@ function updateSettings() {
             algs[i].textContent = "_"
         }
     }
+
+    document.querySelector('input[name=deltan]').value = delta(settings.n)
+}
+
+function delta(n) {
+    // loop through all the cells
+    // if they have a color that in the shape, add it to hashmap?
+    let cells = document.querySelectorAll('.cell')
+    let values = Array.from(cells)
+        .filter(x => Array.from(x.classList).some(x => x.startsWith('mod')))
+        .map(x => x.innerText)
+    let dn = (new Set(values)).size
+    return dn
 }
 
 function clearTable() {
@@ -208,7 +221,7 @@ function fillTable() {
 
 }
 
-function createBorder(val = "_") {
+function createBorder(val = "") {
     var cell = template.cloneNode()
     cell.textContent = val
     cell.classList.add("border")
