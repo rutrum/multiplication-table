@@ -91,6 +91,7 @@ function updateSettings() {
     settings.mod12 = form.mod12.checked
     settings.mod60 = form.mod60.checked
     settings.mod120 = form.mod120.checked
+    settings.compress = form.compress.checked
 
     // If crop lattice and its not a prime number, that is no lattice
     if (form.cropLattice.checked && settings.pairs.length > 0) {
@@ -183,16 +184,13 @@ function d(n) {
     let y = 1
     for (const pair of pairs(n)) {
         // iterate row
-        console.log(pair)
         while (y < pair[1]) {
             for (let x = y * y; x < pair[0] * y; x += y) {
                 products.add(x)
             }
-            console.log(products)
             y++;
         }
     }
-    console.log(products)
     return products.size
 }
 
@@ -267,15 +265,38 @@ function justValues() {
 }
 
 function fillTable() {
+    let ps = []
+    settings.pairs.forEach(p => ps.push(p))
+    ps.reverse()
+
+    pair_i = 0
 
     // For each row
     for (let row = settings.height; row > 0; row--) {
 
+        if (pair_i < ps.length - 1 && row <= ps[pair_i + 1][0]) {
+            pair_i++;
+        }
+
         // Write left border cell
         createBorder(row)
 
+        let start = 1
+
+        // smush the first row cells into one div with a certain length
+        if (settings.compress) {
+            if (row > 1) createCell(null, null, row-1)
+            start = row
+        }
+
+        let stop = settings.width;
+
+        if (settings.compress) {
+            stop = ps[pair_i][1]
+        }
+
         // For each column
-        for (let col = 1; col <= settings.width; col++) {
+        for (let col = start; col <= stop; col++) {
             createCell(row, col)
         }
 
@@ -300,12 +321,17 @@ function createBorder(val = "") {
     table.appendChild(cell)
 }
 
-function createCell(row = 0, col = 0) {
+function createCell(row = 0, col = 0, width) {
     var cell = template.cloneNode()
-    if (settings.showNumbers) {
-        cell.textContent = row * col
+    if (width && settings.compress) {
+        cell.style.width = parseInt(cell.style.width, 10) * width + "px"
+        cell.classList.add("wide")
+    } else {
+        if (settings.showNumbers) {
+            cell.textContent = row * col
+        }
+        cell.classList.add(getColorClass(row, col))
     }
-    cell.classList.add(getColorClass(row, col))
     table.appendChild(cell)
 }
 
