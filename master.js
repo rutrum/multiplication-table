@@ -6,6 +6,8 @@ settings = {
     showNumbers: true
 }
 
+sieve = []
+
 // Add event listeners
 var form = document.querySelector("#settings-form")
 var submit = document.querySelector('#submit')
@@ -121,7 +123,77 @@ function updateSettings() {
         }
     }
 
-    document.querySelector('input[name=deltan]').value = delta(settings.n)
+    //document.querySelector('input[name=deltan]').value = delta(settings.n)
+    document.querySelector('input[name=fastdeltan]').value = d(settings.n)
+}
+
+function build_sieve(n) {
+    if (sieve.length > n + 1) return;
+
+    lap = (i) => {
+        for (let j = i; j <= n; j += i) {
+            if (sieve[j] == undefined) sieve[j] = i
+        }
+    }
+
+    lap(2)
+    for (let i = 3; i <= n; i += 2) {
+        if (sieve[i] == undefined || sieve[i] == i) lap(i)
+    }
+}
+
+function prime_factors(n) {
+    let factors = []
+    while (n != 1) {
+        let f = sieve[n]
+        factors.push(f)
+        n /= f
+    }
+    return factors
+}
+
+function factors(n) {
+    let fs = prime_factors(n)
+    let s = new Set()
+    s.add(1)
+    fs.forEach(f => {
+        let t = new Set()
+        s.forEach(e => {
+            t.add(e)
+            t.add(e * f)
+        });
+        s = t
+    })
+    let ps = []
+    s.forEach(a => ps.push(a))
+    ps.sort((a, b) => a - b)
+    return ps
+}
+
+function* pairs(n) {
+    let fs = factors(n)
+    for (let i = 1; i < fs.length / 2; i++) {
+        yield([fs[fs.length - i - 1], fs[i]])
+    }
+}
+
+function d(n) {
+    build_sieve(n)
+    let products = new Set()
+    let y = 1
+    for (const pair of pairs(n)) {
+        // iterate row
+        console.log(pair)
+        while (y < pair[1]) {
+            for (let x = y * y; x < pair[0] * y; x += y) {
+                products.add(x)
+            }
+            console.log(products)
+            y++;
+        }
+    }
+    console.log(products)
+    return products.size
 }
 
 function delta(n) {
@@ -362,7 +434,7 @@ function getColorClass(row, col) {
 
 function greatestIntegersInRow(numRows) {
     let list = [];
-    pairs = settings.pairs
+    let pairs = settings.pairs
 
     for (let i = 0; i < pairs.length && list.length < numRows; i++) {
         if (pairs[i][0] > list.length + 1) {
