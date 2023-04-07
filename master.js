@@ -19,6 +19,8 @@ algorithms.addEventListener('click', showSettings.bind(event, "algorithm"))
 var animation = document.querySelector('#filter-animation')
 animation.addEventListener('click', showSettings.bind(event, "animation"))
 
+var loop;
+
 function showSettings(filter) {
     hideAllSettings();
     var theseSettings = document.querySelectorAll('.' + filter)
@@ -45,13 +47,14 @@ var br = document.createElement("br")
 var template = document.querySelector(".template")
 template.classList.remove("template")
 
-let loop;
+var start_time, end_time;
 
 function onFormSubmit(event) {
     // event.preventDefault()
     window.clearInterval(loop)
 
     if (form.animate.checked) {
+        document.querySelector("input[name=computetime]").value = "";
         let lower = parseInt(form.startn.value)
         let upper = parseInt(form.endn.value)
         let step = parseInt(form.step.value)
@@ -59,7 +62,10 @@ function onFormSubmit(event) {
         form.cropLattice.checked = false;
         loopThrough(lower, upper, step, period)
     } else {
+        start_time = new Date();
         updateSettings()
+        end_time = new Date();
+        document.querySelector("input[name=computetime]").value = end_time - start_time;
     }
 }
 
@@ -182,16 +188,18 @@ function d(n) {
     build_sieve(n)
     let products = new Set()
     let y = 1
+    let mod1 = pairs(n).next().value[0] - 1;
     for (const pair of pairs(n)) {
         // iterate row
         while (y < pair[1]) {
-            for (let x = y * y; x < pair[0] * y; x += y) {
+            let start = y < mod1 / y ? Math.floor(mod1 / y) * y + y : y * y;
+            for (let x = start; x < pair[0] * y; x += y) {
                 products.add(x)
             }
             y++;
         }
     }
-    return products.size
+    return products.size + mod1
 }
 
 function delta(n) {
